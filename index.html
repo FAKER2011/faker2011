@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Un Regalo para ti</title>
   <style>
-    :root{
-      --rojo:#e63946; --gris:#333; --bg:#f2f2f2; --blanco:#fff; --borde:#e7e7e7;
-    }
-    *{box-sizing:border-box}
+    :root{ --rojo:#e63946; --gris:#333; --bg:#f2f2f2; --blanco:#fff; --borde:#e7e7e7; }
+    *{ box-sizing:border-box }
     body{
       font-family:Arial, sans-serif; background:var(--bg);
       margin:0; min-height:100vh; display:flex; flex-direction:column;
@@ -20,42 +18,24 @@
     .countdown{
       text-align:center;
       font-size: clamp(28px, 6vw, 80px);
-      line-height: 1.1;
-      font-weight: 900;
-      letter-spacing: .5px;
-      font-variant-numeric: tabular-nums;
-      font-feature-settings: "tnum" 1;
-
-      /* gradiente en el texto */
+      line-height: 1.1; font-weight: 900; letter-spacing: .5px;
+      font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;
       background: linear-gradient(90deg, #ff4d6d, #ff8fa3, #ff4d6d);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
       text-shadow: 0 8px 22px rgba(255, 77, 109, .25);
       animation: glow-pulse 2.4s ease-in-out infinite alternate;
-      margin-top: 10px;
-      padding: 0 10px;
+      margin-top: 10px; padding: 0 10px;
     }
     @keyframes glow-pulse{
-      0%   { filter: drop-shadow(0 0 0px rgba(255,77,109,.35)); }
-      100% { filter: drop-shadow(0 0 14px rgba(255,77,109,.55)); }
+      0%{ filter: drop-shadow(0 0 0px rgba(255,77,109,.35)); }
+      100%{ filter: drop-shadow(0 0 14px rgba(255,77,109,.55)); }
     }
     .countdown .digits{
-      font-weight: 900;
-      font-size: 1.05em;
+      font-weight: 900; font-size: 1.05em;
       background: linear-gradient(90deg, #ff003d, #ff7aa2);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .countdown .label{
-      font-weight: 600;
-      opacity: .9;
-      font-size: .65em;
-      -webkit-text-fill-color: initial;
-      color:#333;
-    }
+    .countdown .label{ font-weight:600; opacity:.9; font-size:.65em; -webkit-text-fill-color:initial; color:#333; }
 
     .date{ text-align:center; color:#444; font-size:1.05rem; margin:6px 0; z-index:1; }
 
@@ -65,8 +45,8 @@
       padding:20px; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.08);
       z-index:1;
     }
-    label{display:block; font-weight:600; color:#444; margin-top:6px}
-    input[type="text"],input[type="date"]{
+    label{ display:block; font-weight:600; color:#444; margin-top:6px }
+    input[type="text"]{
       width:100%; padding:12px; margin-top:8px; margin-bottom:16px;
       border:1px solid #ccc; border-radius:8px; font-size:1rem; background:#fff;
     }
@@ -78,46 +58,33 @@
 
     /* Línea de tiempo vertical */
     .timeline-wrapper{ display:none; width:100%; max-width:980px; margin:28px auto 40px; padding:0 18px; position:relative; z-index:1; }
-    .timeline{
-      position:relative; margin:0 auto; padding:24px 0;
-    }
+    .timeline{ position:relative; margin:0 auto; padding:24px 0; }
     .timeline::before{
       content:""; position:absolute; left:50%; transform:translateX(-50%);
       width:4px; top:0; bottom:0; background:linear-gradient(#ffd5da,var(--rojo),#ffd5da);
       border-radius:2px; opacity:.35;
     }
-
-    .t-item{
-      position:relative; width:100%; margin:28px 0;
-      display:grid; grid-template-columns:1fr 1fr; gap:26px;
-    }
+    .t-item{ position:relative; width:100%; margin:28px 0; display:grid; grid-template-columns:1fr 1fr; gap:26px; }
     .t-item .side{ display:flex; }
-    .t-item.left  .side.left,
-    .t-item.right .side.right{ justify-content:flex-end; }
-    .t-item.left  .side.right,
-    .t-item.right .side.left{ justify-content:flex-start; }
+    .t-item.left  .side.left, .t-item.right .side.right{ justify-content:flex-end; }
+    .t-item.left  .side.right, .t-item.right .side.left{ justify-content:flex-start; }
 
     .dot{
       position:absolute; left:50%; transform:translate(-50%,-50%);
       top:50%; width:16px; height:16px; background:var(--rojo);
       border:3px solid #fff; border-radius:50%; box-shadow:0 0 0 4px rgba(230,57,70,.15);
     }
-
     .card{
       width:100%; max-width:520px; background:var(--blanco);
       border:1px solid var(--borde); border-radius:16px; overflow:hidden;
       box-shadow:0 10px 28px rgba(0,0,0,.08); transition:transform .25s ease, box-shadow .25s ease;
     }
     .card:hover{ transform:translateY(-4px); box-shadow:0 16px 36px rgba(0,0,0,.12); }
-    .media{
-      position:relative; width:100%; aspect-ratio:16/10; background:#ddd; overflow:hidden;
-    }
+    .media{ position:relative; width:100%; aspect-ratio:16/10; background:#ddd; overflow:hidden; }
     .media img{ width:100%; height:100%; object-fit:cover; display:block; }
     .content{
       padding:14px 16px 18px;
-      background:
-        radial-gradient(140px 40px at 30px -10px, rgba(230,57,70,.08), transparent 70%),
-        #fff;
+      background: radial-gradient(140px 40px at 30px -10px, rgba(230,57,70,.08), transparent 70%), #fff;
     }
     .tag{
       display:inline-block; font-size:.82rem; font-weight:700; letter-spacing:.2px;
@@ -125,39 +92,28 @@
       margin-bottom:8px;
     }
     .desc{ color:#1e1e1e; line-height:1.45; font-size:1rem; white-space:pre-wrap; }
-
-    /* Conectores (triangulitos hacia la línea) */
-    .connector{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:0; height:0; border:10px solid transparent;
-    }
+    .connector{ position:absolute; top:50%; transform:translateY(-50%); width:0; height:0; border:10px solid transparent; }
     .t-item.left  .connector{ right:calc(50% + 8px); border-left-color:var(--blanco); filter:drop-shadow(-2px 2px 2px rgba(0,0,0,.08)); }
     .t-item.right .connector{ left:calc(50% + 8px);  border-right-color:var(--blanco); filter:drop-shadow(2px 2px 2px rgba(0,0,0,.08)); }
 
-    /* Responsivo: en móvil, una sola columna */
     @media (max-width:900px){
       .timeline::before{ left:24px; transform:none; }
       .dot{ left:24px; }
       .t-item{ grid-template-columns:1fr; gap:12px; padding-left:56px; }
       .t-item .side{ justify-content:flex-start !important; }
       .card{ max-width:600px; }
-      .t-item.left .connector,
-      .t-item.right .connector{
+      .t-item.left .connector, .t-item.right .connector{
         left:42px; right:auto; border-right-color:var(--blanco); border-left-color:transparent;
       }
     }
 
     /* Corazones de fondo */
-    .heart-animation{
-      position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0;
-    }
+    .heart-animation{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
     .heart{
       position:absolute; width:26px; height:26px; transform:rotate(-45deg);
       background:var(--rojo); opacity:.85; border-radius:4px; animation:floatUp linear infinite; will-change:transform,opacity;
     }
-    .heart::before,.heart::after{
-      content:""; position:absolute; width:26px; height:26px; background:var(--rojo); border-radius:50%;
-    }
+    .heart::before,.heart::after{ content:""; position:absolute; width:26px; height:26px; background:var(--rojo); border-radius:50%; }
     .heart::before{ top:-13px; left:0; }
     .heart::after{  left:13px; top:0; }
     @keyframes floatUp{
@@ -166,17 +122,12 @@
       100%{ transform:translateY(-110vh) rotate(-45deg); opacity:0 }
     }
 
-    /* Mensaje final "para más historias" */
+    /* Mensaje final */
     .more-stories{
-      text-align:center;
-      margin: 10px 0 40px;
-      font-weight: 900;
-      letter-spacing: .3px;
+      text-align:center; margin: 10px 0 40px; font-weight: 900; letter-spacing: .3px;
       font-size: clamp(20px, 3.6vw, 40px);
       background: linear-gradient(90deg, #ff2c54, #ff8aa0, #ff2c54);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 0 12px rgba(255, 77, 109, .35));
     }
   </style>
@@ -192,13 +143,22 @@
   <!-- Formulario -->
   <form id="loveForm" autocomplete="off">
     <label for="name">Escribe tu nombre:</label>
-    <input type="text" id="name" name="name" placeholder="" required />
+    <input type="text" id="name" name="name" required />
 
-    <label for="firstTrip">Donde fue nuestro primer viaje</label>
-    <input type="text" id="firstTrip" name="firstTrip" placeholder="" required />
+    <label for="firstTrip">¿Dónde fue nuestro primer viaje?</label>
+    <input type="text" id="firstTrip" name="firstTrip" required />
 
-    <label for="anniversary">¿Qué número es nuestra fecha?</label>
-    <input type="date" id="anniversary" name="anniversary" required />
+    <label for="anniversary">¿Cuál es nuestra fecha? (DD-MM-AAAA)</label>
+    <input
+      type="text"
+      id="anniversary"
+      name="anniversary"
+      placeholder="DD-MM-AAAA"
+      inputmode="numeric"
+      maxlength="10"
+      autocomplete="off"
+      required
+    />
 
     <button type="submit">Entrar</button>
   </form>
@@ -208,32 +168,25 @@
     <div class="timeline">
       <!-- Item 1 -->
       <div class="t-item left">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img1.jpeg" alt="Recuerdo 1" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img1.jpeg" alt="Recuerdo 1" loading="lazy"></div>
             <div class="content">
               <span class="tag">Primeras salidas</span>
               <p class="desc">Recuerdo de nuestra primera salida. Estaba tan nervioso, no sabía qué hacer. Pero la pasamos increíble, ¡y al final te pregunté si íbamos a tener otra salida, y me dijiste que sí! Fue el mejor momento. 💋</p>
             </div>
           </div>
-        </div>
-        <div class="side right"></div>
+        </div><div class="side right"></div>
       </div>
 
       <!-- Item 2 -->
       <div class="t-item right">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left"></div>
         <div class="side right">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img2.jpeg" alt="Recuerdo 2" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img2.jpeg" alt="Recuerdo 2" loading="lazy"></div>
             <div class="content">
               <span class="tag">Primer beso</span>
               <p class="desc">Fue el día que regresé del viaje y nos tomamos de las manos por primera vez. Recuerdo cuando te fui a recoger a Rustica. Jajaja, fue tan increíble, ¡y al final, nuestro primer beso! 💫</p>
@@ -244,32 +197,25 @@
 
       <!-- Item 3 -->
       <div class="t-item left">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img3.jpeg" alt="Recuerdo 3" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img3.jpeg" alt="Recuerdo 3" loading="lazy"></div>
             <div class="content">
               <span class="tag">Improvisados</span>
               <p class="desc">Nuestra salida de última hora. Estaba un poco borracho, pero fui súper cariñoso contigo. Al final, me di cuenta de lo que pasaba con mi personalidad, pero ¡ame el momento! 😄</p>
             </div>
           </div>
-        </div>
-        <div class="side right"></div>
+        </div><div class="side right"></div>
       </div>
 
       <!-- Item 4 -->
       <div class="t-item right">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left"></div>
         <div class="side right">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img4.jpeg" alt="Recuerdo 4" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img4.jpeg" alt="Recuerdo 4" loading="lazy"></div>
             <div class="content">
               <span class="tag">Flores para ti</span>
               <p class="desc">La primera vez que te regalé flores. Me acuerdo que te pregunté por tu color favorito para saber qué flores comprar. Fue un momento increíble, aunque se cayó el celular mientras grababa el video. ¡Pero guardamos el recuerdo! 🌹</p>
@@ -280,32 +226,25 @@
 
       <!-- Item 5 -->
       <div class="t-item left">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img5.jpeg" alt="Recuerdo 5" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img5.jpeg" alt="Recuerdo 5" loading="lazy"></div>
             <div class="content">
               <span class="tag">Ese viaje</span>
               <p class="desc">El momento de nuestro viaje que cambió nuestras vidas. Parecía como si fuera ayer. Recuerdo lo que te dije días antes. Fue el instante en que decidí dar ese paso. 💕</p>
             </div>
           </div>
-        </div>
-        <div class="side right"></div>
+        </div><div class="side right"></div>
       </div>
 
       <!-- Item 6 -->
       <div class="t-item right">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left"></div>
         <div class="side right">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img6.jpeg" alt="Recuerdo 6" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img6.jpeg" alt="Recuerdo 6" loading="lazy"></div>
             <div class="content">
               <span class="tag">Más recuerdos</span>
               <p class="desc">Más fotos del viaje, ¡y todos los recuerdos tan bellos que compartimos! </p>
@@ -316,35 +255,28 @@
 
       <!-- Item 7 -->
       <div class="t-item left">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img7.jpeg" alt="Recuerdo 7" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img7.jpeg" alt="Recuerdo 7" loading="lazy"></div>
             <div class="content">
               <span class="tag">Graduación</span>
               <p class="desc">Las flores de tu graduación. Solo puedo decir... jeje, tú y yo sabemos lo que pasó. 😉</p>
             </div>
           </div>
-        </div>
-        <div class="side right"></div>
+        </div><div class="side right"></div>
       </div>
 
       <!-- Item 8 -->
       <div class="t-item right">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left"></div>
         <div class="side right">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img8.jpeg" alt="Recuerdo 8" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img8.jpeg" alt="Recuerdo 8" loading="lazy"></div>
             <div class="content">
               <span class="tag">Sugar</span>
-              <p class="desc">Más salidas juntos. Ahí fue cuando conociste a &quot;Sugar&quot;. Aunque suene tonto, Sugar es una parte de mí, y me encantó que lo conocieras. 😊</p>
+              <p class="desc">Más salidas juntos. Ahí fue cuando conociste a "Sugar". Aunque suene tonto, Sugar es una parte de mí, y me encantó que lo conocieras. 😊</p>
             </div>
           </div>
         </div>
@@ -352,20 +284,16 @@
 
       <!-- Item 9 -->
       <div class="t-item left">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="connector" aria-hidden="true"></span>
+        <span class="dot" aria-hidden="true"></span><span class="connector" aria-hidden="true"></span>
         <div class="side left">
           <div class="card">
-            <div class="media">
-              <img src="imagenes/img9.jpeg" alt="Recuerdo 9" loading="lazy">
-            </div>
+            <div class="media"><img src="imagenes/img9.jpeg" alt="Recuerdo 9" loading="lazy"></div>
             <div class="content">
               <span class="tag">Halloween</span>
               <p class="desc">Y por último, la fiesta de Halloween. ¡Tanto tiempo esperándolo, y la pasamos increíble! Cuántas más cosas nos faltan por descubrir juntos. 🎃</p>
             </div>
           </div>
-        </div>
-        <div class="side right"></div>
+        </div><div class="side right"></div>
       </div>
     </div>
 
@@ -374,84 +302,113 @@
   </div>
 
   <script>
-    /* ====== Validación del formulario ====== */
-    document.getElementById("loveForm").addEventListener("submit", function (e) {
+    /* ====== Máscara DD-MM-AAAA en el input de fecha ====== */
+    (function maskAnniversary(){
+      const el = document.getElementById("anniversary");
+      el.addEventListener("input", function(){
+        let v = this.value.replace(/\D/g,"").slice(0,8); // DDMMAAAA
+        if (v.length >= 5)      this.value = v.slice(0,2) + "-" + v.slice(2,4) + "-" + v.slice(4);
+        else if (v.length >= 3) this.value = v.slice(0,2) + "-" + v.slice(2);
+        else                    this.value = v;
+      });
+    })();
+
+    /* ====== Utiles ====== */
+    const norm = s => (s || "")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .replace(/\s+/g," ").trim().toLowerCase();
+
+    // Acepta: dd-mm-aaaa, dd/mm/aaaa, yyyy-mm-dd  -> ISO yyyy-mm-dd
+    function normalizeDateToISO(s){
+      s = (s || "").trim();
+      let m = s.match(/^(\d{2})[\/-](\d{2})[\/-](\d{4})$/);
+      if (m){
+        const [_, dd, mm, yyyy] = m;
+        return `${yyyy}-${mm}-${dd}`;
+      }
+      m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (m){
+        const [_, yyyy, mm, dd] = m;
+        return `${yyyy}-${mm}-${dd}`;
+      }
+      return "";
+    }
+
+    /* ====== Validación del formulario (tolerante) ====== */
+    document.getElementById("loveForm").addEventListener("submit", function(e){
       e.preventDefault();
       const name = document.getElementById("name").value;
       const firstTrip = document.getElementById("firstTrip").value;
       const anniversary = document.getElementById("anniversary").value;
 
-      const nameLower = name.trim().toLowerCase();
-      const firstTripLower = firstTrip.trim().toLowerCase();
+      const nName = norm(name);
+      const nTrip = norm(firstTrip);
+      const iso = normalizeDateToISO(anniversary);
 
-      if (
-        (nameLower === "margorie" || nameLower === "mar") &&
-        firstTripLower === "marcahuasi" &&
-        anniversary === "2025-10-05"
-      ) {
+      const okName = ["margorie","mar","marjorie"].includes(nName);
+      const okTrip = nTrip.includes("marcahuasi");
+      const okDate = iso === "2025-10-05";
+
+      if (okName && okTrip && okDate){
         alert(`Hola, ${name}! 💖 Te muestro nuestra línea de tiempo.`);
         document.getElementById("timelineWrapper").style.display = "block";
         document.querySelector("form").style.display = "none";
         window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
+      }else{
         alert("¡Lo siento, tus respuestas no coinciden! Intenta de nuevo.");
       }
     });
 
-    /* ====== Contador desde fecha (números destacados) ====== */
-    (function startCountdown() {
+    /* ====== Contador desde fecha ====== */
+    (function startCountdown(){
       const startDate = new Date("2025-10-05T11:00:00");
-      const countdownElement = document.getElementById("countdown");
-
-      function updateCountdown() {
+      const el = document.getElementById("countdown");
+      function pad(n){ return String(n).padStart(2,"0"); }
+      function update(){
         const now = new Date();
         const diff = now - startDate;
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        countdownElement.innerHTML =
+        el.innerHTML =
           `<span class="label">Han pasado</span> ` +
-          `<span class="digits">${days}</span> ` +
-          `<span class="label">días,</span> ` +
-          `<span class="digits">${hours}</span> ` +
-          `<span class="label">horas,</span> ` +
-          `<span class="digits">${minutes}</span> ` +
-          `<span class="label">minutos y</span> ` +
-          `<span class="digits">${seconds}</span> `+`<span class="label">segundos </span> ` ;
+          `<span class="digits">${days}</span> <span class="label">días,</span> ` +
+          `<span class="digits">${pad(hours)}</span> <span class="label">horas,</span> ` +
+          `<span class="digits">${pad(minutes)}</span> <span class="label">minutos y</span> ` +
+          `<span class="digits">${pad(seconds)}</span> <span class="label">segundos</span>`;
       }
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
+      update(); setInterval(update, 1000);
     })();
 
     /* ====== Fecha actual ====== */
- 
+    (function(){
+      const d = new Date();
+      const dd = String(d.getDate()).padStart(2,"0");
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+      const yyyy = d.getFullYear();
+      document.getElementById("currentDate").textContent = `Fecha actual: ${dd}-${mm}-${yyyy}`;
+    })();
 
     /* ====== Generador de corazones ====== */
-    (function spawnHearts() {
+    (function spawnHearts(){
       const container = document.querySelector(".heart-animation");
-      const MAX_HEARTS = 24;
-
-      function createHeart() {
+      const MAX = 24;
+      function createHeart(){
         const h = document.createElement("div");
         h.className = "heart";
-        const size = 14 + Math.random() * 28;
-        h.style.width = size + "px";
-        h.style.height = size + "px";
-        h.style.left = Math.random() * 100 + "vw";
+        const size = 14 + Math.random()*28;
+        h.style.width = size+"px"; h.style.height = size+"px";
+        h.style.left = Math.random()*100 + "vw";
         h.style.bottom = "-60px";
-        const duration = 6 + Math.random() * 8;
-        const delay = Math.random() * 4;
-        h.style.animationDuration = duration + "s";
-        h.style.animationDelay = delay + "s";
+        const duration = 6 + Math.random()*8;
+        const delay = Math.random()*4;
+        h.style.animationDuration = duration+"s";
+        h.style.animationDelay = delay+"s";
         container.appendChild(h);
-        setTimeout(() => h.remove(), (duration + delay) * 1000);
+        setTimeout(()=>h.remove(), (duration+delay)*1000);
       }
-
-      for (let i = 0; i < MAX_HEARTS; i++) {
-        setTimeout(createHeart, Math.random() * 1500);
-      }
+      for (let i=0;i<MAX;i++){ setTimeout(createHeart, Math.random()*1500); }
       setInterval(createHeart, 700);
     })();
   </script>
